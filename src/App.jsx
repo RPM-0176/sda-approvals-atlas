@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, MapPin, Trash2, Download, AlertCircle, CheckCircle2, Circle, ExternalLink, Building2, Plus, ArrowLeft, DollarSign, Ruler, Home, Wrench, FileCheck, BookOpen, Edit3, RotateCcw, Copy, Edit, Clipboard } from 'lucide-react';
 import { PlanningDDTab, DD_DEFAULTS } from './PlanningDD.jsx';
+import { SubdivisionPlannerSection, ParentLotDiagram, PerLotDiagramWithRoads, LAYOUT_DEFAULTS } from './SubdivisionPlanner.jsx';
 
 // ============================================================================
 // STATE-SPECIFIC RULES
@@ -475,7 +476,9 @@ const blankProject = () => ({
   parentLotSize: '',
   subdivisionStatus: 'titled',
   lots: [blankLot('QLD')],
-  completedSteps: {}, costOverrides: {}, planningDD: { ...DD_DEFAULTS, actionItems: [] },
+  completedSteps: {}, costOverrides: {},
+  planningDD: { ...DD_DEFAULTS, actionItems: [] },
+  layout: { ...LAYOUT_DEFAULTS },
   createdAt: null,
 });
 
@@ -498,13 +501,14 @@ export default function SDAPortal() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await window.storage.get('sda-projects-v5');
+        const result = await window.storage.get('sda-projects-v6');
         if (result?.value) {
           const loaded = JSON.parse(result.value);
           // Backfill planningDD on any older projects
           const upgraded = loaded.map(p => ({
             ...p,
             planningDD: p.planningDD || { ...DD_DEFAULTS, actionItems: [] },
+            layout: p.layout || { ...LAYOUT_DEFAULTS },
           }));
           setProjects(upgraded);
         }
@@ -516,7 +520,7 @@ export default function SDAPortal() {
   const saveProjects = async (updated) => {
     setProjects(updated);
     try {
-      await window.storage.set('sda-projects-v5', JSON.stringify(updated));
+      await window.storage.set('sda-projects-v6', JSON.stringify(updated));
     } catch (e) { console.error('Save failed', e); }
   };
 
@@ -726,7 +730,7 @@ function Dashboard({ projects, setView, setActiveProject, setActiveLotIdx, delet
   return (
     <div style={{ maxWidth: 1280, margin: '0 auto', padding: '60px 32px' }}>
       <div style={{ marginBottom: 56, maxWidth: 720 }}>
-        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v5</div>
+        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v6</div>
         <h1 className="serif" style={{ fontSize: 64, fontWeight: 400, lineHeight: 1.05, margin: '0 0 24px', letterSpacing: '-0.03em' }}>
           From <em style={{ color: '#b8763e' }}>land</em><br />to <em style={{ color: '#b8763e' }}>permit</em>,<br />mapped.
         </h1>
@@ -1158,7 +1162,7 @@ function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActive
       </div>
 
       {activeTab === 'overview' && <OverviewTab project={project} stateRules={stateRules} projType={projType} sdaCat={sdaCat} cost={cost} completedCount={completedCount} totalSteps={totalSteps} />}
-      {activeTab === 'site' && <SiteTab project={project} stateRules={stateRules} projType={projType} activeLotIdx={activeLotIdx} setActiveLotIdx={setActiveLotIdx} updateProjectLot={updateProjectLot} updateProjectLotSetback={updateProjectLotSetback} />}
+      {activeTab === 'site' && <SiteTab project={project} stateRules={stateRules} projType={projType} activeLotIdx={activeLotIdx} setActiveLotIdx={setActiveLotIdx} updateProjectLot={updateProjectLot} updateProjectLotSetback={updateProjectLotSetback} updateProject={updateProject} />}
       {activeTab === 'planning-dd' && <PlanningDDTab project={project} updateProject={updateProject} />}
       {activeTab === 'pathway' && <PathwayTab project={project} steps={steps} toggleStep={toggleStep} completedCount={completedCount} totalSteps={totalSteps} />}
       {activeTab === 'design' && <DesignTab project={project} sdaCat={sdaCat} updateProject={updateProject} />}
@@ -1263,13 +1267,25 @@ function OverviewTab({ project, stateRules, projType, sdaCat, cost, completedCou
   );
 }
 
-function SiteTab({ project, stateRules, projType, activeLotIdx, setActiveLotIdx, updateProjectLot, updateProjectLotSetback }) {
+function SiteTab({ project, stateRules, projType, activeLotIdx, setActiveLotIdx, updateProjectLot, updateProjectLotSetback, updateProject }) {
   const lot = project.lots[activeLotIdx] || project.lots[0];
+  const isDuplex = project.projectType === 'duplex';
 
   return (
     <div>
+      {/* SUBDIVISION + LAYOUT PLANNER (always shown — once per project, not per lot) */}
+      <SubdivisionPlannerSection project={project} updateProject={updateProject} />
+
+      {/* PARENT LOT DIAGRAM (duplex only) */}
+      {isDuplex && (
+        <div style={{ marginTop: 24, marginBottom: 24 }}>
+          <ParentLotDiagram project={project} />
+        </div>
+      )}
+
+      {/* LOT TAB SWITCHER */}
       {project.lots.length > 1 && (
-        <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 24, marginTop: 24 }}>
           {project.lots.map((l, idx) => (
             <button key={idx} onClick={() => setActiveLotIdx(idx)}
               style={{
@@ -1336,10 +1352,10 @@ function SiteTab({ project, stateRules, projType, activeLotIdx, setActiveLotIdx,
 
         <div>
           <div style={{ position: 'sticky', top: 100 }}>
-            <h3 className="serif" style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px' }}>Setback diagram</h3>
-            <SetbackDiagram lot={lot} stateRules={stateRules} />
+            <h3 className="serif" style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px' }}>{lot.label} setback diagram</h3>
+            <PerLotDiagramWithRoads lot={lot} lotIdx={activeLotIdx} layout={project.layout} stateRules={stateRules} />
             <div style={{ marginTop: 12, padding: 12, background: '#f5f1ea', fontSize: 11, lineHeight: 1.5, color: '#666' }} className="sans">
-              <strong>Buildable area</strong> shows the footprint envelope after setbacks. Top is primary frontage.{lot.isCorner && ' Secondary frontage on left.'}
+              Top of diagram = primary road frontage for this lot.{lot.isCorner && ' Left side = secondary road.'} Setbacks apply automatically based on subdivision approach.
             </div>
           </div>
         </div>
@@ -1729,4 +1745,3 @@ function ResourcesTab({ stateRules, project, updateProject }) {
     </div>
   );
 }
-

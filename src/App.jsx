@@ -35,6 +35,9 @@ const STATES = {
     setbacks: { front: 6, secondary: 2, rear: 4, side: 1.5 },
     minSubdivisionLotSize: 400,
     duplexParentLotMin: 800,
+    duplexParentLotMinCorner: 800,
+    duplexFrontageMin: null,
+    duplexDepthMin: null,
     eligibleZones: ['Low Density Residential', 'Low-Medium Density Residential', 'Medium Density Residential', 'High Density Residential', 'Centre zones', 'Community Facilities', 'Mixed Use'],
     disqualifyingOverlays: ['Bushfire Hazard', 'Flood Hazard', 'Coastal Hazard', 'Landslide Hazard', 'Historic Mining Hazard', 'Heritage Overlay', 'Environmental Significance'],
     notes: 'The Planning Amendment Regulation 2025 tightened the rules from 29 November 2025. Class 1 buildings follow QDC/QHC siting rules; Class 2/3 must meet the prescribed setbacks and site coverage to qualify for the streamlined pathway.',
@@ -68,6 +71,9 @@ const STATES = {
     setbacks: { front: 4.5, secondary: 2, rear: 3, side: 0.9 },
     minSubdivisionLotSize: 450,
     duplexParentLotMin: 900,
+    duplexParentLotMinCorner: 900,
+    duplexFrontageMin: null,
+    duplexDepthMin: null,
     eligibleZones: ['R1 General Residential', 'R2 Low Density Residential', 'R3 Medium Density Residential', 'R4 High Density Residential', 'B1 Neighbourhood Centre', 'B2 Local Centre', 'B4 Mixed Use'],
     disqualifyingOverlays: ['Bushfire Prone Land (BAL-FZ)', 'Flood Prone Land', 'Coastal Vulnerability', 'Heritage Conservation Area', 'Acid Sulfate Soils', 'Biodiversity'],
     notes: 'NSW treats SDA differently than QLD. Permanent SDA dwellings are typically Group Homes (Permanent) under the Housing SEPP. Class 3 SDA with shared support typically goes through DA.',
@@ -101,6 +107,9 @@ const STATES = {
     setbacks: { front: 5, secondary: 2, rear: 3, side: 1 },
     minSubdivisionLotSize: 400,
     duplexParentLotMin: 800,
+    duplexParentLotMinCorner: 750,
+    duplexFrontageMin: 20,
+    duplexDepthMin: 40,
     eligibleZones: ['General Residential Zone (GRZ)', 'Residential Growth Zone (RGZ)', 'Mixed Use Zone (MUZ)', 'Neighbourhood Residential Zone (NRZ)', 'Commercial 1 Zone (C1Z)'],
     disqualifyingOverlays: ['Bushfire Management Overlay (BMO)', 'Land Subject to Inundation Overlay (LSIO)', 'Floodway Overlay (FO)', 'Heritage Overlay (HO)', 'Environmental Significance Overlay (ESO)', 'Erosion Management Overlay'],
     notes: 'Victoria classifies SDA dwellings primarily as Residential Care Facilities under planning law. ResCode (Clauses 54-55) governs siting and design.',
@@ -334,20 +343,43 @@ const buildIssues = (state, lot) => {
   return { issues, warnings, positives };
 };
 
-const validateSubdivision = (state, parentLotSize, lots, subdivisionStatus) => {
+const validateSubdivision = (state, parentLotSize, lots, subdivisionStatus, isCorner, parentFrontage, parentDepth) => {
   const stateRules = STATES[state];
   const issues = [];
   const warnings = [];
   const positives = [];
 
+  // Use corner-aware minimum
+  const applicableMin = isCorner ? stateRules.duplexParentLotMinCorner : stateRules.duplexParentLotMin;
+
   if (subdivisionStatus === 'proposed') {
     const parent = parseInt(parentLotSize);
     if (!parent) {
       warnings.push('Enter the pre-subdivided parent lot size to check subdivision feasibility.');
-    } else if (parent < stateRules.duplexParentLotMin) {
-      issues.push(`Parent lot ${parent}m² is below ${stateRules.name}'s typical ${stateRules.duplexParentLotMin}m² minimum to subdivide for duplex. Cannot subdivide.`);
+    } else if (parent < applicableMin) {
+      const cornerNote = isCorner ? ' (corner block minimum)' : ' (standard block minimum)';
+      issues.push(`Parent lot ${parent}m² is below ${stateRules.name}'s ${applicableMin}m² minimum${cornerNote} to subdivide for duplex. Cannot subdivide.`);
     } else {
-      positives.push(`Parent lot ${parent}m² meets the ${stateRules.duplexParentLotMin}m² minimum for subdivision.`);
+      const cornerNote = isCorner ? ' (corner block — reduced minimum applies)' : '';
+      positives.push(`Parent lot ${parent}m² meets the ${applicableMin}m² minimum for subdivision in ${stateRules.name}${cornerNote}.`);
+    }
+
+    // Check frontage and depth (Victoria specifically requires these for non-corner)
+    if (stateRules.duplexFrontageMin && !isCorner) {
+      const f = parseFloat(parentFrontage);
+      if (f && f < stateRules.duplexFrontageMin) {
+        issues.push(`Parent lot frontage ${f}m is below ${stateRules.name}'s ${stateRules.duplexFrontageMin}m minimum frontage for non-corner duplex subdivision.`);
+      } else if (f) {
+        positives.push(`Frontage ${f}m meets ${stateRules.duplexFrontageMin}m minimum.`);
+      }
+    }
+    if (stateRules.duplexDepthMin && !isCorner) {
+      const d = parseFloat(parentDepth);
+      if (d && d < stateRules.duplexDepthMin) {
+        issues.push(`Parent lot depth ${d}m is below ${stateRules.name}'s ${stateRules.duplexDepthMin}m minimum depth for non-corner duplex subdivision.`);
+      } else if (d) {
+        positives.push(`Depth ${d}m meets ${stateRules.duplexDepthMin}m minimum.`);
+      }
     }
 
     const lot1 = parseInt(lots[0]?.lotSize) || 0;
@@ -832,7 +864,7 @@ function ProjectWizard({ formStep, setFormStep, newProject, setNewProject, editi
   const isEditing = !!editingProjectId;
 
   const subdivResult = isDuplex
-    ? validateSubdivision(newProject.state, newProject.parentLotSize, newProject.lots, newProject.subdivisionStatus)
+    ? validateSubdivision(newProject.state, newProject.parentLotSize, newProject.lots, newProject.subdivisionStatus, newProject.parentIsCorner, newProject.parentFrontage, newProject.parentDepth)
     : { issues: [], warnings: [], positives: [] };
 
   const canContinueStep3 = isDuplex
@@ -979,8 +1011,19 @@ function ProjectWizard({ formStep, setFormStep, newProject, setNewProject, editi
           {newProject.subdivisionStatus === 'proposed' && (
             <div className="card">
               <h3 className="serif" style={{ fontSize: 18, fontWeight: 500, margin: '0 0 4px' }}>Parent lot (pre-subdivision)</h3>
-              <p style={{ fontSize: 11, color: '#888', margin: '0 0 12px' }} className="sans">Must be {STATES[newProject.state].duplexParentLotMin}m²+ to subdivide for duplex in {STATES[newProject.state].name}</p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              <p style={{ fontSize: 11, color: '#888', margin: '0 0 12px' }} className="sans">
+                {(() => {
+                  const sr = STATES[newProject.state];
+                  const isCorner = newProject.parentIsCorner;
+                  const min = isCorner ? sr.duplexParentLotMinCorner : sr.duplexParentLotMin;
+                  let msg = `Must be ${min}m²+ to subdivide for duplex in ${sr.name}${isCorner ? ' (corner block)' : ' (standard block)'}`;
+                  if (sr.duplexFrontageMin && !isCorner) {
+                    msg += `. Plus ${sr.duplexFrontageMin}m frontage × ${sr.duplexDepthMin}m depth required.`;
+                  }
+                  return msg;
+                })()}
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
                 <div>
                   <label>Parent lot size (m²)</label>
                   <input type="number" value={newProject.parentLotSize}
@@ -994,6 +1037,30 @@ function ProjectWizard({ formStep, setFormStep, newProject, setNewProject, editi
                     placeholder="164 Discovery Drive, Helensvale" />
                 </div>
               </div>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, textTransform: 'none', letterSpacing: 0, fontSize: 13, fontWeight: 500, color: '#1a1a1a', cursor: 'pointer', padding: 10, background: newProject.parentIsCorner ? 'rgba(184, 118, 62, 0.08)' : '#f5f1ea', border: `1px solid ${newProject.parentIsCorner ? '#b8763e' : '#e0d9cd'}` }}>
+                <input type="checkbox" checked={newProject.parentIsCorner || false}
+                  onChange={e => setNewProject({...newProject, parentIsCorner: e.target.checked})}
+                  style={{ width: 'auto', margin: 0 }} />
+                Parent lot is a corner block
+              </label>
+
+              {STATES[newProject.state].duplexFrontageMin && !newProject.parentIsCorner && (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                  <div>
+                    <label>Frontage (m)</label>
+                    <input type="number" step="0.1" value={newProject.parentFrontage || ''}
+                      onChange={e => setNewProject({...newProject, parentFrontage: e.target.value})}
+                      placeholder={String(STATES[newProject.state].duplexFrontageMin)} />
+                  </div>
+                  <div>
+                    <label>Depth (m)</label>
+                    <input type="number" step="0.1" value={newProject.parentDepth || ''}
+                      onChange={e => setNewProject({...newProject, parentDepth: e.target.value})}
+                      placeholder={String(STATES[newProject.state].duplexDepthMin)} />
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -1187,7 +1254,7 @@ function OverviewTab({ project, stateRules, projType, sdaCat, cost, completedCou
 
   // Add subdivision warnings if duplex
   if (project.projectType === 'duplex') {
-    const subdiv = validateSubdivision(project.state, project.parentLotSize, project.lots, project.subdivisionStatus);
+    const subdiv = validateSubdivision(project.state, project.parentLotSize, project.lots, project.subdivisionStatus, project.parentIsCorner || project.layout?.isCorner, project.parentFrontage || project.layout?.parentFrontage, project.parentDepth || project.layout?.parentDepth);
     subdiv.issues.forEach(i => allIssues.push({ type: 'issue', text: i, lot: 'Subdivision' }));
     subdiv.warnings.forEach(w => allIssues.push({ type: 'warning', text: w, lot: 'Subdivision' }));
   }

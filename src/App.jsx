@@ -3,6 +3,7 @@ import { ChevronRight, MapPin, Trash2, Download, AlertCircle, CheckCircle2, Circ
 import { PlanningDDTab, DD_DEFAULTS } from './PlanningDD.jsx';
 import { SubdivisionPlannerSection, ParentLotDiagram, PerLotDiagramWithRoads, LAYOUT_DEFAULTS } from './SubdivisionPlanner.jsx';
 import { TreeRegisterTab } from './Trees.jsx';
+import { InteractiveParentLot } from './SitePlan.jsx';
 
 // ============================================================================
 // STATE-SPECIFIC RULES
@@ -513,6 +514,7 @@ const blankProject = () => ({
   planningDD: { ...DD_DEFAULTS, actionItems: [] },
   layout: { ...LAYOUT_DEFAULTS },
   trees: [],
+  dwellings: [],
   createdAt: null,
 });
 
@@ -535,7 +537,7 @@ export default function SDAPortal() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await window.storage.get('sda-projects-v6');
+        const result = await window.storage.get('sda-projects-v7');
         if (result?.value) {
           const loaded = JSON.parse(result.value);
           // Backfill planningDD on any older projects
@@ -544,6 +546,7 @@ export default function SDAPortal() {
             planningDD: p.planningDD || { ...DD_DEFAULTS, actionItems: [] },
             layout: p.layout || { ...LAYOUT_DEFAULTS },
             trees: p.trees || [],
+            dwellings: p.dwellings || [],
           }));
           setProjects(upgraded);
         }
@@ -555,7 +558,7 @@ export default function SDAPortal() {
   const saveProjects = async (updated) => {
     setProjects(updated);
     try {
-      await window.storage.set('sda-projects-v6', JSON.stringify(updated));
+      await window.storage.set('sda-projects-v7', JSON.stringify(updated));
     } catch (e) { console.error('Save failed', e); }
   };
 
@@ -765,7 +768,7 @@ function Dashboard({ projects, setView, setActiveProject, setActiveLotIdx, delet
   return (
     <div style={{ maxWidth: 1280, margin: '0 auto', padding: '60px 32px' }}>
       <div style={{ marginBottom: 56, maxWidth: 720 }}>
-        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v6</div>
+        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v7</div>
         <h1 className="serif" style={{ fontSize: 64, fontWeight: 400, lineHeight: 1.05, margin: '0 0 24px', letterSpacing: '-0.03em' }}>
           From <em style={{ color: '#b8763e' }}>land</em><br />to <em style={{ color: '#b8763e' }}>permit</em>,<br />mapped.
         </h1>
@@ -1351,7 +1354,7 @@ function SiteTab({ project, stateRules, projType, activeLotIdx, setActiveLotIdx,
       {/* PARENT LOT DIAGRAM (duplex only) */}
       {isDuplex && (
         <div style={{ marginTop: 24, marginBottom: 24 }}>
-          <ParentLotDiagram project={project} />
+          <InteractiveParentLot project={project} updateProject={updateProject} setbacks={stateRules.setbacks} />
         </div>
       )}
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, MapPin, Trash2, Download, AlertCircle, CheckCircle2, Circle, ExternalLink, Building2, Plus, ArrowLeft, DollarSign, Ruler, Home, Wrench, FileCheck, BookOpen, Edit3, RotateCcw, Copy, Edit, Clipboard } from 'lucide-react';
+import { ChevronRight, MapPin, Trash2, Download, AlertCircle, CheckCircle2, Circle, ExternalLink, Building2, Plus, ArrowLeft, DollarSign, Ruler, Home, Wrench, FileCheck, BookOpen, Edit3, RotateCcw, Copy, Edit, Clipboard, TreePine } from 'lucide-react';
 import { PlanningDDTab, DD_DEFAULTS } from './PlanningDD.jsx';
 import { SubdivisionPlannerSection, ParentLotDiagram, PerLotDiagramWithRoads, LAYOUT_DEFAULTS } from './SubdivisionPlanner.jsx';
+import { TreeRegisterTab } from './Trees.jsx';
 
 // ============================================================================
 // STATE-SPECIFIC RULES
@@ -511,6 +512,7 @@ const blankProject = () => ({
   completedSteps: {}, costOverrides: {},
   planningDD: { ...DD_DEFAULTS, actionItems: [] },
   layout: { ...LAYOUT_DEFAULTS },
+  trees: [],
   createdAt: null,
 });
 
@@ -541,6 +543,7 @@ export default function SDAPortal() {
             ...p,
             planningDD: p.planningDD || { ...DD_DEFAULTS, actionItems: [] },
             layout: p.layout || { ...LAYOUT_DEFAULTS },
+            trees: p.trees || [],
           }));
           setProjects(upgraded);
         }
@@ -1186,6 +1189,7 @@ function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActive
   const tabs = [
     { id: 'overview', label: 'Overview', icon: Home },
     { id: 'site', label: 'Site & Setbacks', icon: Ruler },
+    { id: 'trees', label: 'Trees & TPZ', icon: TreePine },
     { id: 'planning-dd', label: 'Planning DD', icon: Clipboard },
     { id: 'pathway', label: 'Pathway', icon: FileCheck },
     { id: 'design', label: 'Design Standard', icon: Wrench },
@@ -1230,6 +1234,7 @@ function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActive
 
       {activeTab === 'overview' && <OverviewTab project={project} stateRules={stateRules} projType={projType} sdaCat={sdaCat} cost={cost} completedCount={completedCount} totalSteps={totalSteps} />}
       {activeTab === 'site' && <SiteTab project={project} stateRules={stateRules} projType={projType} activeLotIdx={activeLotIdx} setActiveLotIdx={setActiveLotIdx} updateProjectLot={updateProjectLot} updateProjectLotSetback={updateProjectLotSetback} updateProject={updateProject} />}
+      {activeTab === 'trees' && <TreeRegisterTab project={project} updateProject={updateProject} />}
       {activeTab === 'planning-dd' && <PlanningDDTab project={project} updateProject={updateProject} />}
       {activeTab === 'pathway' && <PathwayTab project={project} steps={steps} toggleStep={toggleStep} completedCount={completedCount} totalSteps={totalSteps} />}
       {activeTab === 'design' && <DesignTab project={project} sdaCat={sdaCat} updateProject={updateProject} />}
@@ -1420,7 +1425,7 @@ function SiteTab({ project, stateRules, projType, activeLotIdx, setActiveLotIdx,
         <div>
           <div style={{ position: 'sticky', top: 100 }}>
             <h3 className="serif" style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px' }}>{lot.label} setback diagram</h3>
-            <PerLotDiagramWithRoads lot={lot} lotIdx={activeLotIdx} layout={project.layout} stateRules={stateRules} />
+            <PerLotDiagramWithRoads lot={lot} lotIdx={activeLotIdx} layout={project.layout} stateRules={stateRules} trees={project.trees} />
             <div style={{ marginTop: 12, padding: 12, background: '#f5f1ea', fontSize: 11, lineHeight: 1.5, color: '#666' }} className="sans">
               Top of diagram = primary road frontage for this lot.{lot.isCorner && ' Left side = secondary road.'} Setbacks apply automatically based on subdivision approach.
             </div>

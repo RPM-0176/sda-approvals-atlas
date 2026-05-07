@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AlertCircle, CheckCircle2, RotateCw } from 'lucide-react';
+import { renderTPZOnSVG } from './Trees.jsx';
 
 // ============================================================================
 // LAYOUT DEFAULTS
@@ -455,10 +456,19 @@ export function ParentLotDiagram({ project }) {
         {/* Dimensions */}
         <text x={lotX + lotPxW / 2} y={lotY + lotPxH + 16} textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="9" fill="#666">{layout.parentFrontage || '?'}m frontage</text>
         <text x={lotX - 8} y={lotY + lotPxH / 2} textAnchor="end" fontFamily="IBM Plex Mono" fontSize="9" fill="#666" transform={`rotate(-90 ${lotX - 8} ${lotY + lotPxH / 2})`}>{layout.parentDepth || '?'}m depth</text>
+
+        {/* TPZ overlay for trees on parent lot */}
+        {project.trees && project.trees.length > 0 && (() => {
+          const scaleX = lotPxW / (parseFloat(layout.parentFrontage) || frontage);
+          const scaleY = lotPxH / (parseFloat(layout.parentDepth) || depth);
+          return renderTPZOnSVG(project.trees, { lotX, lotY }, scaleX, scaleY,
+            parseFloat(layout.parentFrontage) || frontage,
+            parseFloat(layout.parentDepth) || depth);
+        })()}
       </svg>
 
       <div style={{ marginTop: 12, padding: 12, background: '#f5f1ea', fontSize: 11, lineHeight: 1.5, color: '#666' }} className="sans">
-        <strong>Legend:</strong> Solid line = primary road · Dashed grey = secondary road · Orange dashed = subdivision line · 🟢 EX = existing driveway (keep) · 🔴 EX = existing driveway (move/remove) · 🟧 NEW = proposed driveway for Lot 2
+        <strong>Legend:</strong> Solid line = primary road · Dashed grey = secondary road · Orange dashed = subdivision line · 🟢 EX = existing driveway (keep) · 🔴 EX = existing driveway (move/remove) · 🟧 NEW = proposed driveway for Lot 2 · 🌳 Green dashed circle = Tree Protection Zone (TPZ) · Inner dashed = Structural Root Zone (SRZ)
       </div>
     </div>
   );
@@ -468,7 +478,7 @@ export function ParentLotDiagram({ project }) {
 // PER-LOT DIAGRAM with road frontages and driveway
 // ============================================================================
 
-export function PerLotDiagramWithRoads({ lot, lotIdx, layout, stateRules }) {
+export function PerLotDiagramWithRoads({ lot, lotIdx, layout, stateRules, trees }) {
   const lotSize = parseFloat(lot.lotSize) || 600;
   const lotWidth = Math.sqrt(lotSize / 1.5);
   const lotDepth = lotSize / lotWidth;
@@ -594,6 +604,9 @@ export function PerLotDiagramWithRoads({ lot, lotIdx, layout, stateRules }) {
 
         {/* Lot info */}
         <text x={lotX + 6} y={lotY + 14} fontFamily="IBM Plex Mono" fontSize="9" fill="#666">{lot.label} · {lot.lotSize || '?'}m²</text>
+
+        {/* TPZ overlay for trees */}
+        {trees && trees.length > 0 && renderTPZOnSVG(trees, { lotX, lotY }, scaleX, scaleY, lotWidth, lotDepth)}
       </svg>
 
       <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: 11 }} className="sans">

@@ -1,0 +1,1027 @@
+{
+  "title": "NDIS Specialist Disability Accommodation Design Standard",
+  "edition": "Edition 1.1",
+  "issueDate": "25 October 2019",
+  "source": "NDIS",
+  "sourceUrl": "https://www.ndis.gov.au",
+  "categories": {
+    "IL": "Improved Liveability",
+    "R": "Robust",
+    "FA": "Fully Accessible",
+    "HPS": "High Physical Support"
+  },
+  "sections": [
+    {
+      "id": "1",
+      "title": "General requirements",
+      "page": 11,
+      "summary": "Defines the minimum rooms a dwelling must have on the entry level (or a level serviced by a lift): one bedroom per participant, one WC pan, one shower, one hand wash basin, one living area, one kitchen, and one laundry. A shared laundry is reasonable if there is an accessible path of travel from the dwelling.",
+      "clauses": [
+        {
+          "id": "1.1",
+          "categories": ["IL"],
+          "requirement": "Dwelling shall have one bedroom exclusively for use of a participant and the following on an entry level or level serviced by a lift: one WC pan, one shower, one hand wash basin, one living area, one kitchen, and one laundry.",
+          "rationale": "Sizes of all rooms and areas are determined by the design category. A shared laundry is reasonable as long as an accessible path of travel is provided from the dwelling. In Improved Liveability, bedrooms may be on a floor level accessed only via steps."
+        },
+        {
+          "id": "1.2",
+          "categories": ["R", "FA", "HPS"],
+          "requirement": "Dwelling shall have the following on an entry level or a level serviced by a lift: one bedroom exclusively for use of a participant, one WC pan, one shower, one hand wash basin, one living area, one kitchen, and one laundry.",
+          "rationale": "Sizes of all rooms and areas are determined by the design category. A shared laundry is reasonable as long as an accessible path of travel is provided from the dwelling."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Pedestrian entry from the site boundary",
+      "page": 12,
+      "summary": "Requirements for the accessway from the site boundary to an entry doorway. Covers step-free pathways, gradients (1:20 walkways, 1:10 step ramps, 1:14 ramps), widths, landings, curved paths, and vertical clearance.",
+      "clauses": [
+        {
+          "id": "2.1",
+          "categories": ["FA", "HPS"],
+          "requirement": "A safe, continuous step-free accessway shall be provided from the front boundary of the site to an entry doorway of the dwelling. The accessway may include a walkway, step ramp or ramp.",
+          "rationale": "FA and HPS participants may require a wheelchair, so step-free wheelchair-accessible connection from boundary to entry is essential. Concession may be granted on larger parcels of land excluding medium and high density locations."
+        },
+        {
+          "id": "2.2",
+          "categories": ["IL", "R"],
+          "requirement": "A safe, continuous step-free accessway shall be provided from the front boundary of the site to an entry doorway of the dwelling. If this cannot be provided, then step-free accessway shall be provided from a car parking space (per Clause 3) to an entry doorway.",
+          "rationale": "IL and R participants may not require a wheelchair, so an alternative step-free accessway via a car parking space is reasonable in lieu of accessway from front boundary."
+        },
+        {
+          "id": "2.3",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "An accessway shall have: no steps; a level transition of surface materials; a maximum vertical tolerance of 3mm or 5mm between abutting surfaces (lip rounded or bevelled); an even and firm surface; and a crossfall of not more than 1:40.",
+          "rationale": "Required to enable safe access to users."
+        },
+        {
+          "id": "2.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "1:20 grade walkway permitted as part of accessway. Requires 1200mm length mid-landings every 15m, 600mm firm and level surface either side (unless kerb/handrail/wall ≥450mm), and minimum P4 or R11 slip resistance.",
+          "rationale": "Compliance with AS1428.1 covers 80th percentile wheelchair size; widths and circulation per design category."
+        },
+        {
+          "id": "2.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "1:10 grade step ramp permitted. Maximum level change 190mm; maximum length 1900mm. All features per AS1428.1. Slip resistance minimum P5 or R12.",
+          "rationale": "Compliance with AS1428.1 covers 80th percentile wheelchair size. Required landing space shall be fully within property boundary."
+        },
+        {
+          "id": "2.6",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Where level difference is over 190mm, maximum 1:14 ramp permitted. Requires 1200mm length landings at base, top, and every 9m maximum. Handrails per AS1428.1. Slip resistance minimum P4 or R11.",
+          "rationale": "TGSIs only if specifically required by participants. Where NCC mandates TGSIs, consider removal via BCA Performance Solution using raised tactile warning indicators on handrails."
+        },
+        {
+          "id": "2.7",
+          "categories": ["IL", "R"],
+          "requirement": "Minimum clear width of accessway shall be 1000mm (skirting to skirting). Includes all ramps within accessway.",
+          "rationale": "Required for easy and safe access. Where ramps are provided, clear width is measured between handrails."
+        },
+        {
+          "id": "2.8",
+          "categories": ["FA", "HPS"],
+          "requirement": "Minimum clear width of accessway shall be 1200mm (skirting to skirting). Includes all ramps within accessway.",
+          "rationale": "Enhanced requirement for users that require additional circulation space."
+        },
+        {
+          "id": "2.9",
+          "categories": ["FA", "HPS"],
+          "requirement": "Minimum clear width of curved accessway shall be 1500mm with minimum radius per AS1428.1. Crossfall toward centre of curvature.",
+          "rationale": "A wheelchair user may not be able to navigate a curved pathway unless widths and radius meet AS1428.1."
+        },
+        {
+          "id": "2.10",
+          "categories": ["IL", "R"],
+          "requirement": "Where ramp or walkway is part of accessway, level landings no less than 1200mm × 1200mm (exclusive of door/gate swing) shall be provided.",
+          "rationale": "Required for safe resting places and to move to other spaces."
+        },
+        {
+          "id": "2.11",
+          "categories": ["FA", "HPS"],
+          "requirement": "Where ramp or walkway is part of accessway, level landings no less than 1200mm × 1200mm (exclusive of door/gate swing). Landing size shall increase based on required gate/door circulation spaces or change of direction per AS1428.1.",
+          "rationale": "Door circulation per AS1428.1 essential for wheelchair users to operate door/gate independently. Door automation considered suitable in lieu of latch side door circulation spaces."
+        },
+        {
+          "id": "2.12",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Minimum vertical clearance along all paths of travel to be 2000mm.",
+          "rationale": "Required for safe access on paths of travel."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Car parking",
+      "page": 18,
+      "summary": "Requirements for a car parking space associated with the dwelling, including step-free access from the parking space to the entry, dimensions (3200×5400 IL/R, 3800×5400 FA/HPS), surface, gradients, and roof cover requirements for FA/HPS.",
+      "clauses": [
+        {
+          "id": "3.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "A safe, continuous step-free accessway shall be provided from both the front boundary of the site and from any car parking space associated with the dwelling (excluding staff-only parking) to an entry doorway. Concessions apply for IL and R per Clause 3.2.",
+          "rationale": "In multi-storey developments where parking is in basement, lift or ramp required. Where parking is exclusively for support staff, no requirements apply."
+        },
+        {
+          "id": "3.2",
+          "categories": ["IL", "R"],
+          "requirement": "Where access cannot be provided per Clause 3.1, step-free accessway shall be provided from a car parking space (per 3.3) to an entry doorway.",
+          "rationale": "IL and R participants may not require wheelchair, so alternative step-free accessway via car parking space is reasonable."
+        },
+        {
+          "id": "3.3",
+          "categories": ["IL", "R"],
+          "requirement": "If providing a car parking space for participant use: minimum 3200mm (width) × 5400mm (length); even, firm, slip-resistant surface P4 or R11; level surface with maximum 1:40 gradient (any direction).",
+          "rationale": "Required to provide minimum extra space to access vehicle as driver or passenger. Gradients essential for safety."
+        },
+        {
+          "id": "3.4",
+          "categories": ["FA", "HPS"],
+          "requirement": "If providing a car parking space for participant use: minimum 3800mm (width) × 5400mm (length); P4 or R11 surface; maximum 1:40 gradient any direction; roof over space with clear vertical clearance per AS2890.6.",
+          "rationale": "Enhanced space to access vehicle as driver or passenger. Carports comply with the roof over car space requirement."
+        },
+        {
+          "id": "3.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Based on building classification, NCC or local government may require accessible parking space per AS2890.6, in which case full compliance with AS2890.6 is required.",
+          "rationale": "As required under the NCC. Use of access symbol and bollard may not be required depending on use and management of the parking space."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Entrance, doorways and door hardware",
+      "page": 22,
+      "summary": "Requirements for entry doors and all internal doorways. Covers landing sizes (1200×1200 for IL/R, 1500×1500 for FA/HPS), door clear opening widths (820mm IL/R, 900mm FA, 950mm HPS), level thresholds, threshold ramps (max 1:8), door circulation spaces per AS1428.1, door handles, door automation provisions, solid core timber doors (Robust), and laminated glass.",
+      "clauses": [
+        {
+          "id": "4.1.1",
+          "categories": ["IL", "R"],
+          "requirement": "Level landing area at least 1200mm × 1200mm with maximum 1:40 gradient and crossfall at level (step-free) external entry doorway, on arrival side. Threshold ramp (if required) permitted within landing area. Entire doorway width in front of landing area.",
+          "rationale": "Required for safe resting space to access door."
+        },
+        {
+          "id": "4.1.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "Level landing area at least 1500mm × 1500mm with maximum 1:40 gradient and crossfall at level external entry doorway, on arrival side. Landing area increased to accommodate door circulation per AS1428.1. Threshold ramp (if required) permitted within landing area.",
+          "rationale": "Enhanced safe resting space to access door."
+        },
+        {
+          "id": "4.1.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "All door circulation spaces (excluding internal door circulation for bedrooms) shall be provided per AS1428.1 to both sides of the door.",
+          "rationale": "Doors that swing outside (including screen doors) also require AS1428.1 circulation. Concession may apply to storage and exclusive staff use areas. Door automation cannot replace circulation length but is suitable BCA performance solution in lieu of latch side clearance."
+        },
+        {
+          "id": "4.1.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Covered roof shall be provided over the entire required landing area outside main external entry doorway.",
+          "rationale": "Required for safe and suitable protection while accessing door."
+        },
+        {
+          "id": "4.1.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Step-free doorway threshold to external entry doorway. Where threshold exceeds 5mm and is less than 35mm, doorway threshold ramp per AS1428.1 with maximum 1:8 grade.",
+          "rationale": "Flush floor entry preferred. Threshold ramp suitable to overcome small level differences and afford weather protection."
+        },
+        {
+          "id": "4.1.6",
+          "categories": ["FA", "HPS"],
+          "requirement": "Step-free doorway threshold to external doorways leading to common or private open spaces. Where threshold exceeds 5mm and is less than 35mm, threshold ramp per AS1428.1 with maximum 1:8 grade.",
+          "rationale": "Required to enable all users to use both indoor and outdoor spaces."
+        },
+        {
+          "id": "4.2.1",
+          "categories": ["IL", "R"],
+          "requirement": "All doors to and within all areas normally used by participants (including external doorways) with minimum clear opening width of 820mm.",
+          "rationale": "820mm clear opening achieved by one single door panel; door open to minimum 90 degrees with door jamb."
+        },
+        {
+          "id": "4.2.2",
+          "categories": ["FA"],
+          "requirement": "All doors to and within areas normally used by participants (including external doorways) with minimum clear opening width of 900mm.",
+          "rationale": "Enhanced door clearance. 900mm achieved by one single door panel."
+        },
+        {
+          "id": "4.2.3",
+          "categories": ["HPS"],
+          "requirement": "All doors to and within areas normally used by participants (including external doorways) with minimum clear opening width of 950mm.",
+          "rationale": "Enables access for users with larger circulation requirements. 950mm achieved by one single door panel."
+        },
+        {
+          "id": "4.2.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "All internal doorways shall have a level (step-free) transition and threshold (maximum vertical tolerance 3mm vertical or 5mm between abutting surfaces, lip rounded or bevelled).",
+          "rationale": "Internal doorways must comply without need for threshold ramps (only permitted at external doorways)."
+        },
+        {
+          "id": "4.2.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Doorways shall have door handles installed between 900mm and 1100mm above FFL.",
+          "rationale": "Reachable in both seated and standing position."
+        },
+        {
+          "id": "4.2.6",
+          "categories": ["IL", "FA", "HPS"],
+          "requirement": "Door handles selection and location per AS1428.1 (Figures 6 and 19).",
+          "rationale": "Enables access regardless of manual dexterity abilities."
+        },
+        {
+          "id": "4.2.7",
+          "categories": ["FA", "HPS"],
+          "requirement": "Doorway circulation spaces per AS1428.1 to all doorways (excluding exclusive staff use, non-accessible toilets, storage rooms). Door automation can be provided in lieu of latch side AS1428.1 circulation space. If circulation not provided per AS1428.1, automation must be provided at onset, not just provision for future.",
+          "rationale": "Door automation cannot replace circulation length but is suitable BCA performance solution in lieu of latch side clearance."
+        },
+        {
+          "id": "4.2.8",
+          "categories": ["HPS"],
+          "requirement": "Power and control cabling to head of entry doors of participant bedrooms, one external entry doorway, and one external doorway to open area (where provided) shall be provided for future automation. Capped GPO at door head may comply.",
+          "rationale": "Future-proofs door automation."
+        },
+        {
+          "id": "4.2.9",
+          "categories": ["R"],
+          "requirement": "Timber doors where provided shall be solid core doors.",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "4.2.10",
+          "categories": ["R"],
+          "requirement": "Laminated glass or polycarbonate resin thermoplastic material shall be provided to all glazed areas, glazed doors and side lights.",
+          "rationale": "For safety of users."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Corridors",
+      "page": 30,
+      "summary": "Internal corridors and passageways: minimum 1000mm clear width for IL/R, 1200mm for FA/HPS. Corridor widths must also comply with AS1428.1 door circulation requirements based on direction of approach.",
+      "clauses": [
+        {
+          "id": "5.1",
+          "categories": ["IL", "R"],
+          "requirement": "All internal corridors and passageways shall provide minimum clear width 1000mm (skirting to skirting).",
+          "rationale": "To enable safe and easy access by users."
+        },
+        {
+          "id": "5.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "All internal corridors and passageways shall provide minimum clear width 1200mm (skirting to skirting).",
+          "rationale": "For enhanced safe and easy access by users."
+        },
+        {
+          "id": "5.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "Width of corridors shall comply with door circulation per AS1428.1 based on direction of approach. Where AS1428.1 requires less than 1200mm, minimum 1200mm shall be provided.",
+          "rationale": "AS1428.1 covers 80th percentile wheelchair size, with 90th percentile at doorways and turns over 60°."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Windows",
+      "page": 31,
+      "summary": "Window sill heights, window control reach ranges, future window blind automation cabling, and lockable windows.",
+      "clauses": [
+        {
+          "id": "6.1",
+          "categories": ["FA", "HPS"],
+          "requirement": "All window sills in living areas and at least one window sill in each participant's bedroom shall be no higher than 1000mm above FFL. Concession reasonable in kitchen, bathroom and utility spaces.",
+          "rationale": "Enables users to see out of window. Each bedroom requires at least one glazed area (window or full height door) to external wall with minimum sill height."
+        },
+        {
+          "id": "6.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "Window controls shall be located within easy reach from seated or standing position (between 600mm and 1100mm above FFL). Concession reasonable in kitchen, bathroom and utility spaces.",
+          "rationale": "Enables controls to be reached by all users."
+        },
+        {
+          "id": "6.3",
+          "categories": ["HPS"],
+          "requirement": "Power and control cabling to windows of bedrooms and living areas shall be provided for future window blind automation. Capped GPO at window head may comply.",
+          "rationale": "Enables future automation of window coverings where manual operation is difficult."
+        },
+        {
+          "id": "6.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Provide lockable windows.",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Sanitary facilities",
+      "page": 33,
+      "summary": "Bathroom and toilet requirements: WC pan, shower and hand wash basin must be on entry level (or lift-served level). Includes 900×1200 clear space for IL/R toilets, AS1428.1-compliant accessible toilet for FA/HPS, hobless shower (900×900 IL/R, 1160×1100 FA/HPS), AS1428.1 hand wash basin with knee/toe clearance, slip resistance P3/R10. Section 7.2 covers wall reinforcement (12mm sheeting to 2100mm height) for future grabrail installation.",
+      "clauses": [
+        {
+          "id": "7.1.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Entry level (or lift-served level) shall have sanitary facilities including a WC pan, a shower and a hand wash basin. Bathtubs not mandatory but may be provided based on participant requirements.",
+          "rationale": ""
+        },
+        {
+          "id": "7.1.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "The required WC pan, shower and hand wash basin shall be provided within the same bathroom.",
+          "rationale": "One bathroom required to fully comply; in shared environments additional toilets could be provided."
+        },
+        {
+          "id": "7.1.3",
+          "categories": ["IL", "R"],
+          "requirement": "At least one WC pan on entry level (or lift-served level) shall provide minimum clear space of 900mm (width) × 1200mm (length forward of pan) clear of door swing and other fixtures (shower screens, basin).",
+          "rationale": "Selected WC pan not required to comply with AS1428.1."
+        },
+        {
+          "id": "7.1.4",
+          "categories": ["FA"],
+          "requirement": "At least one WC pan on entry level (or lift-served level) shall be AS1428.1 compliant (unisex accessible toilet, not ambulant) with: c/l of pan 450-460mm to side wall; 800±10mm from back wall to front edge; minimum 600mm clear of cistern from front edge; 1900mm × 2300mm circulation space per AS1428.1; flushing controls proud of surface.",
+          "rationale": "AS1428.1 design allows multiple transfer methods based on 90th percentile wheelchair size, allowing maximum flexibility for independent wheelchair use. Backrests and grabrails not provided unless specifically required."
+        },
+        {
+          "id": "7.1.5",
+          "categories": ["HPS"],
+          "requirement": "At least one WC pan on entry level (or lift-served level) shall be AS1428.1 compliant. Either: (a) c/l 450-460mm to side wall, 800±10mm from back wall, 600mm clear of cistern, 1900×2300 circulation, controls proud of surface; OR (b) Peninsular type with 900mm clear circulation both sides for 2300mm from back wall (per NCC accessible adult change facilities).",
+          "rationale": "Peninsular type WC pan may be required for HPS needs. Backrests, grabrails, drop-down rails not provided unless specifically required by participant."
+        },
+        {
+          "id": "7.1.6",
+          "categories": ["IL", "R"],
+          "requirement": "At least one shower on entry level (or lift-served level) in a corner of the room with hobless shower recess minimum 900mm × 900mm clear of any shower screens or fixtures.",
+          "rationale": "Hobless means wheelchair accessible and excludes setdowns or shower screen frames."
+        },
+        {
+          "id": "7.1.7",
+          "categories": ["FA", "HPS"],
+          "requirement": "At least one shower in a corner with: minimum 1160mm × 1100mm with one of two AS1428.1 circulation spaces; shower curtain rail around 1160×1100 space; vertical support grabrail only with height-adjustable shower head and hose per AS1428.1; lever style tap 900-1100mm above FFL and 300-800mm from internal corner; floor gradient per AS1428.1.",
+          "rationale": "Any floor drain (including strip drains) permitted. Shower seat and horizontal grabrail not provided unless specifically required by participant."
+        },
+        {
+          "id": "7.1.8",
+          "categories": ["FA", "HPS"],
+          "requirement": "At least one hand wash basin on entry level shall be AS1428.1 compliant with: minimum basin depth 430mm; minimum AS1428.1 circulation space; encroachment-free knee and toe clearance per AS1428.1 under basin minimum 850mm width centred on basin; sensor or lever tap per AS1428.1 with operable parts and water source within 300mm from edge of basin.",
+          "rationale": "Essential to enable use by a wide range of potential users."
+        },
+        {
+          "id": "7.1.9",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "If providing a fixed bathtub, it shall be clear of circulation space requirements of WC pan, shower and hand wash basin.",
+          "rationale": ""
+        },
+        {
+          "id": "7.1.10",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Slip resistance of all sanitary facility floors shall be minimum P3 or R10.",
+          "rationale": ""
+        },
+        {
+          "id": "7.2.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Except for masonry/concrete walls, internal side of full sanitary room (with WC pan, shower, basin, bathtub if provided) shall have wall reinforcement minimum 12mm thick sheeting from FFL to minimum 2100mm height.",
+          "rationale": "Future-proofs grabrails. Sheeting required to be plywood or compressed fibre cement; foam board or insulation panel not permitted."
+        },
+        {
+          "id": "7.2.2",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "WC pan shall have adjacent side wall (at least one side) with 600mm minimum length wall reinforcement forward of pan. Where nearside wall has doorway and no wall on other side, 600mm minimum reinforced wall shall be clear of door frame.",
+          "rationale": "Required for locating future grabrails. Does not apply when peninsular type WC pan provided for HPS."
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Kitchen",
+      "page": 47,
+      "summary": "Kitchen requirements: cooktop with rangehood, in-built oven, sink with tap, dishwasher. Clearances 1000mm IL/R, 1550mm FA/HPS. Wall oven with side hinge for FA/HPS. Accessible benchtop with 900×440 clear knee/toe space (FA/HPS). One height-adjustable benchtop (720-1020mm clear underneath). Cabinetry mechanisms (D-pull handles, push-release). Electric/induction cooktop 300mm from corner. Lever or sensor taps. GPO within 300mm of bench edge, max 1100mm FFL. Standard or drawer dishwasher (IL/R), drawer style (FA/HPS). Wheelchair-accessible pantry (FA/HPS). Robust materials (R). P3/R10 slip resistance.",
+      "clauses": [
+        {
+          "id": "8.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Kitchen shall be provided with minimum fixtures: fixed cooktop (with rangehood), in-built oven, sink (with tap), and dishwasher.",
+          "rationale": ""
+        },
+        {
+          "id": "8.2",
+          "categories": ["IL", "R"],
+          "requirement": "At least 1000mm clearance in front of fixed benches and appliances (leading edge of outermost bench, not from cupboard face/kickplate, excluding handles). Recessed area for un-installed appliances minimum 700mm depth.",
+          "rationale": "1000mm space between benches specified for comfort of users."
+        },
+        {
+          "id": "8.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "At least 1550mm clearance in front of fixed benches and appliances. Recessed area for un-installed appliances minimum 700mm depth.",
+          "rationale": "1550mm space between benches specified for comfort of persons using wheelchairs."
+        },
+        {
+          "id": "8.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Task lighting above workspaces. Minimum 300 lux when tested at maximum 1500mm intervals directly over benchtops.",
+          "rationale": "For good visibility."
+        },
+        {
+          "id": "8.5",
+          "categories": ["FA", "HPS"],
+          "requirement": "Wall oven with: side hinged door with latch side next to accessible benchtop; oven door handle operable part 600-1100mm above FFL; at least one shelf on telescopic rails.",
+          "rationale": "Access to oven such that it can be used in seated or standing position."
+        },
+        {
+          "id": "8.6",
+          "categories": ["FA", "HPS"],
+          "requirement": "Accessible benchtop: minimum 600mm depth right next to cooktop and wall oven (latch side of oven door); minimum 900mm (width) × 440mm (depth) clear under benchtop with AS1428.1 knee/toe.",
+          "rationale": ""
+        },
+        {
+          "id": "8.7",
+          "categories": ["FA", "HPS"],
+          "requirement": "One height-adjustable benchtop, 600mm depth, with: 900×440 clear knee/toe per AS1428.1; height adjustment from 720mm to 1020mm clear space underneath (from FFL).",
+          "rationale": "Accessible benchtop can be the height-adjustable one, or a separate section can be the height-adjustable one."
+        },
+        {
+          "id": "8.8",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Kitchen cabinetry mechanisms shall be one or more of: D-pull handles toward top of below-bench cupboards; D-pull toward bottom of overhead cupboards; overhanging lip minimum 20mm for overhead cupboards; push-to-release mechanisms.",
+          "rationale": "Enables operation in seated or standing position with limited dexterity. Drawers under benchtop preferred to cupboards."
+        },
+        {
+          "id": "8.9",
+          "categories": ["FA", "HPS"],
+          "requirement": "Cooktop shall be electric or induction, located at least 300mm from any internal corner or wall (excluding splashback).",
+          "rationale": "Electric/induction safer than gas."
+        },
+        {
+          "id": "8.10",
+          "categories": ["FA", "HPS"],
+          "requirement": "Cooktop controls on side of accessible benchtop or near front edge of benchtop.",
+          "rationale": ""
+        },
+        {
+          "id": "8.11",
+          "categories": ["FA", "HPS"],
+          "requirement": "Lever or sensor type tapware to sink per AS1428.1, with operable parts of lever and water source not more than 300mm from benchtop edge.",
+          "rationale": ""
+        },
+        {
+          "id": "8.12",
+          "categories": ["FA", "HPS"],
+          "requirement": "At least one double GPO within 300mm from front edge of benchtop and maximum 1100mm above FFL. GPO adjacent to bench of minimum 600mm depth.",
+          "rationale": "Enables appliances such as toasters, kettles, sandwich presses to be used."
+        },
+        {
+          "id": "8.13",
+          "categories": ["IL", "R"],
+          "requirement": "Standard or drawer style dishwasher.",
+          "rationale": "Included for improved amenity."
+        },
+        {
+          "id": "8.14",
+          "categories": ["FA", "HPS"],
+          "requirement": "Drawer style dishwasher.",
+          "rationale": "Enables operation in seated or standing position."
+        },
+        {
+          "id": "8.15",
+          "categories": ["FA", "HPS"],
+          "requirement": "Wheelchair-accessible pantry.",
+          "rationale": "Pantry with extendable basket shelves or full pull-out style suitable."
+        },
+        {
+          "id": "8.16",
+          "categories": ["R"],
+          "requirement": "Kitchen benchtop and cabinetry shall be made of robust materials.",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "8.17",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Slip resistance of all kitchen flooring minimum P3 or R10.",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Laundry",
+      "page": 54,
+      "summary": "Laundry requirements: sink or tub with taps. Shared laundry permitted with accessible path of travel. Clearance 1000mm IL/R, 1550mm FA/HPS. Sensor or lever taps within 300mm of bench edge. P3/R10 slip resistance.",
+      "clauses": [
+        {
+          "id": "9.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Laundry shall have minimum fixtures: sink or tub (with taps). Laundry could be a shared laundry, not necessarily within the dwelling.",
+          "rationale": "Accessible path of travel required from dwelling to laundry, complying with all spatial requirements based on design category."
+        },
+        {
+          "id": "9.2",
+          "categories": ["IL", "R"],
+          "requirement": "At least 1000mm clearance in front of fixed benches and appliances. Recessed area for un-installed appliances minimum 700mm depth.",
+          "rationale": "Enables minimum access to facilities."
+        },
+        {
+          "id": "9.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "At least 1550mm clearance in front of fixed benches and appliances. Recessed area for un-installed appliances minimum 700mm depth.",
+          "rationale": "Enables turn around in laundry."
+        },
+        {
+          "id": "9.4",
+          "categories": ["FA", "HPS"],
+          "requirement": "Basins, sinks and tubs shall have sensor or lever style tap, with operable parts and water source within 300mm of benchtop/tub/bench edge.",
+          "rationale": "For ease of operation."
+        },
+        {
+          "id": "9.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Slip resistance of all laundry flooring minimum P3 or R10.",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Bedroom",
+      "page": 57,
+      "summary": "Each participant gets a bedroom per their design category. IL/R: 3100×3100 (wall to wall) plus 1400mm robe outside that area. FA/HPS: must accommodate 1530×2100 Queen bed with 1540mm one side and 1000mm other two sides; internal door circulation 1540×1450 clear of bed; external circulation per AS1428.1 or 1200mm minimum. 1400mm robe outside bedroom size with 1540mm in front. Three double GPOs at bed head, one double GPO opposite (FA/HPS).",
+      "clauses": [
+        {
+          "id": "10.1",
+          "categories": ["IL", "R"],
+          "requirement": "Bedroom size 3100mm × 3100mm (wall surface to wall surface). Robe minimum 1400mm width within bedroom, clear of required bedroom size.",
+          "rationale": "Bedroom dimensions not measured from skirting to skirting. 1400mm width robe can have multiple smaller sections."
+        },
+        {
+          "id": "10.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "Bedroom shall accommodate minimum Queen bed 1530mm × 2100mm. Circulation: 1540mm minimum on one side; 1000mm minimum on the other two sides (excluding bed head side).",
+          "rationale": "Australian Queen mattress is 1530×2030, hence 1530×2100 minimum."
+        },
+        {
+          "id": "10.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "Internal door circulation space minimum 1540mm (width) × 1450mm (depth), clear of Queen bed 1530×2100. External door circulation per AS1428.1 based on direction of approach, or minimum 1200mm (skirting to skirting), whichever is more.",
+          "rationale": "Ideally circulation per AS1428.1 clear of bed; 1540×1450 considered suitable as long as clear of Queen bed."
+        },
+        {
+          "id": "10.4",
+          "categories": ["FA", "HPS"],
+          "requirement": "Robe 1400mm width within bedroom, clear of required bedroom size, with minimum 1540mm space in front.",
+          "rationale": "1400mm width robe can have multiple smaller sections."
+        },
+        {
+          "id": "10.5",
+          "categories": ["FA", "HPS"],
+          "requirement": "Three double GPOs on the wall where head of bed is likely to be; at least one double GPO on the opposite wall.",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Living area",
+      "page": 61,
+      "summary": "Family/living room shall accommodate a free space minimum 2250mm in diameter, clear of furniture (FA/HPS).",
+      "clauses": [
+        {
+          "id": "11.1",
+          "categories": ["FA", "HPS"],
+          "requirement": "Family/living room shall accommodate free space minimum 2250mm in diameter, clear of furniture.",
+          "rationale": "Enables ease of movement clear of furniture."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Switches and powerpoints",
+      "page": 62,
+      "summary": "Light switches 900-1000mm above FFL, horizontally aligned with door handle at room entrance. GPOs 600-1100mm above FFL (FA/HPS). Rocker, toggle or push pad design minimum 35mm wide. Dimmable lighting in living areas and bedrooms.",
+      "clauses": [
+        {
+          "id": "12.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Light switches positioned consistently: 900-1000mm above FFL; horizontally aligned with door handle at room entrance.",
+          "rationale": "Ease of access and consistency of locations."
+        },
+        {
+          "id": "12.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "GPOs installed between 600mm and 1100mm above FFL.",
+          "rationale": "Ease of access by user."
+        },
+        {
+          "id": "12.3",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Light and GPO switches shall be rocker action, toggle or push pad with minimum width 35mm.",
+          "rationale": "Ease of access by user."
+        },
+        {
+          "id": "12.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Dimmable lighting switches in living areas and bedrooms.",
+          "rationale": "For comfort level selections. Standard rotary dimmer controls satisfy this."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Flooring and slip resistance",
+      "page": 63,
+      "summary": "Internal flooring firm, even, level transition (max 3mm vertical or 5mm with rounded/bevelled lip). All internal floors P3/R10 minimum. Carpet pile max 11mm + 4mm backing = 15mm total (FA/HPS).",
+      "clauses": [
+        {
+          "id": "13.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "All internal flooring (including wet areas) shall be firm, even, with level transition between abutting surfaces (max vertical tolerance 3mm or 5mm with rounded/bevelled lip).",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "13.2",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "All internal floor finishes minimum slip resistance P3 or R10.",
+          "rationale": "For safety. Additional slip resistance required for internal stairways."
+        },
+        {
+          "id": "13.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "Carpets shall have pile height/thickness not more than 11mm and carpet backing not more than 4mm (total max 15mm).",
+          "rationale": "Assists wheelchair users. Density and underlay quality may make floor unsuitable for wheelchairs regardless of pile height."
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Internal stairways",
+      "page": 64,
+      "summary": "Stairways within dwellings: continuous handrails both sides, minimum 1000mm clear width between handrails, no winders on landings, closed risers, P3/R10 slip resistance.",
+      "clauses": [
+        {
+          "id": "14.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Stairways within dwellings shall feature continuous handrail on both sides.",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "14.2",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Minimum clear width 1000mm between handrails; handrail profile and extensions per AS1428.1.",
+          "rationale": "For support while using the stairway."
+        },
+        {
+          "id": "14.3",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Stairway shall have no winders on landings.",
+          "rationale": "Easier to navigate."
+        },
+        {
+          "id": "14.4",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Stairway shall have closed risers.",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "14.5",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Stairway shall provide slip resistance P3 or R10.",
+          "rationale": "For safety of users."
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Use of lifts",
+      "page": 65,
+      "summary": "Passenger lift per NCC E3.6 (excluding stairway platform lifts). Lift door minimum 900mm clear opening. Lift car minimum 1100mm (width) × 1400mm (in direction of travel).",
+      "clauses": [
+        {
+          "id": "15.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Passenger lift within or for access to dwelling shall be as permitted under NCC Clause E3.6, excluding stairway platform lifts.",
+          "rationale": "Promotes innovation and flexibility, especially in smaller plot sizes."
+        },
+        {
+          "id": "15.2",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Lift door minimum clear opening 900mm.",
+          "rationale": ""
+        },
+        {
+          "id": "15.3",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Lift car size minimum 1100mm (width) × 1400mm (direction of travel).",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "Common use external areas, private open space and landscaping",
+      "page": 66,
+      "summary": "Common use external stairways per AS1428.1. Letterboxes on 1540×2070 hard standing, <1:40 gradient, lockable, 600-1100mm height (FA/HPS). All external ramps and accessways comply with Clauses 2.4-2.12.",
+      "clauses": [
+        {
+          "id": "16.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "All common use external stairways shall comply with AS1428.1.",
+          "rationale": "TGSIs only if specifically required by participants. Where NCC mandates TGSIs, consider removal via BCA Performance Solution using raised tactile warning indicators on handrails."
+        },
+        {
+          "id": "16.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "Where individual letter boxes provided: situated on hard-standing 1540×2070 with <1:40 gradient/crossfall directly in front; wheelchair access via continuous accessible path from dwelling; lockable; height 600-1100mm above FFL.",
+          "rationale": "Suitable and reachable for all users. Concession may apply for height in residential flat buildings."
+        },
+        {
+          "id": "16.3",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "All ramps and accessways to common use and private use external areas shall comply with Clauses 2.4 to 2.12 as applicable.",
+          "rationale": ""
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "title": "Storage",
+      "page": 67,
+      "summary": "Dwelling shall have storage cupboard minimum 600mm width with adjustable shelf heights (separate from bedroom robe). Robust category may have fixed shelves.",
+      "clauses": [
+        {
+          "id": "17.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Storage cupboard minimum 600mm width with adjustable shelf heights.",
+          "rationale": "Required for improved amenity. Storage cupboard separate from bedroom robe. Robust category: fixed shelves reasonable."
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Breakout room",
+      "page": 68,
+      "summary": "Robust only, optional. If provided, separate room designed for participant's individual disability-related needs. Not a study or living/dining area; not a seclusion room.",
+      "clauses": [
+        {
+          "id": "18.1",
+          "categories": ["R"],
+          "requirement": "If breakout room provided, it shall be a separate room designed to respond to participant's individual disability-related needs. Not a study or living/dining area; intended to enhance learning, exploration or positively impact mood through activities, equipment, sound and lighting.",
+          "rationale": "Provision not mandatory. Note: a breakout room is not a seclusion room."
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "title": "Luminance contrast requirements",
+      "page": 69,
+      "summary": "Improved Liveability primarily. 30% luminance contrast at all doorways (door leaf to jamb, leaf to wall, architrave to wall, leaf to architrave, or jamb to wall, minimum 50mm width). Bowman-Sapolinski equation. Solid contrasting glazing strip 75mm wide at 900-1000mm AFL on glazed areas mistakable for openings (IL, R). Toilet seat 30% contrast with background. Floor-to-wall colour contrast.",
+      "clauses": [
+        {
+          "id": "19.1",
+          "categories": ["IL"],
+          "requirement": "All doorways minimum 30% luminance contrast between: door leaf and door jamb; OR door leaf and adjacent wall; OR architrave and wall; OR door leaf and architrave; OR door jamb and adjacent wall. Minimum width of luminance contrast area 50mm. Bowman-Sapolinski formula: 125(Y2-Y1)/(Y1+Y2+25).",
+          "rationale": "Design stage: validate via paint supplier LRVs. Final-as-built: verify with colorimeter or luminance meter (smart phones not relied upon)."
+        },
+        {
+          "id": "19.2",
+          "categories": ["IL", "R"],
+          "requirement": "Solid (non-translucent) contrasting glazing strip 75mm wide between 900-1000mm above FFL for full width of glazed area which could be mistaken for an opening.",
+          "rationale": "Identifies glazing and prevents accidental movement into it. Contrast determined by assessor's professional judgment."
+        },
+        {
+          "id": "19.3",
+          "categories": ["IL"],
+          "requirement": "Toilet seat minimum 30% luminance contrast with background (pan, wall, or floor against which it is viewed).",
+          "rationale": ""
+        },
+        {
+          "id": "19.4",
+          "categories": ["IL"],
+          "requirement": "Colour contrast between floor surfaces and wall surfaces.",
+          "rationale": "Determined by assessor's professional judgment."
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "title": "Ceiling hoists",
+      "page": 70,
+      "summary": "HPS only. Bedrooms shall have power and inbuilt structure capable of installing constant charge ceiling hoist (across and down the bed), minimum 250kg load capacity, ceiling or wall mounted. Structural certification required at final-as-built stage.",
+      "clauses": [
+        {
+          "id": "20.1",
+          "categories": ["HPS"],
+          "requirement": "Bedrooms shall have provision for power and inbuilt structure capable of installation of constant charge ceiling hoist. Hoist capable of going across the bed and down the bed. Minimum load capacity 250kg. Ceiling or wall mounted.",
+          "rationale": "Required for some participants with specific requirements."
+        },
+        {
+          "id": "20.2",
+          "categories": ["HPS"],
+          "requirement": "Evidence/Certification document for building structure to provide for ceiling hoist. Design stage: notation on drawings/specs. Final-as-built: structural engineer certification for 250kg minimum.",
+          "rationale": "For structural integrity."
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "title": "Heating and cooling",
+      "page": 71,
+      "summary": "Reverse cycle air-conditioning to living areas and bedrooms with control panels 900-1100mm AFL, ≥500mm from internal corner (FA/HPS). Ducted A/C zoned per habitable room.",
+      "clauses": [
+        {
+          "id": "21.1",
+          "categories": ["FA", "HPS"],
+          "requirement": "Reverse cycle air-conditioning to living areas and bedrooms with control panels 900-1100mm above FFL and not closer than 500mm to any internal corner.",
+          "rationale": "For participants as needed and accessible use."
+        },
+        {
+          "id": "21.2",
+          "categories": ["FA", "HPS"],
+          "requirement": "Where ducted air-conditioning is used, zoning of habitable rooms shall be provided.",
+          "rationale": "Suitable for participant's health needs."
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "title": "Emergency power solutions",
+      "page": 71,
+      "summary": "HPS only. Emergency power solutions for minimum 2-hour outage: at least 2 double GPOs in participant bedrooms and any provided automated entry/egress doors.",
+      "clauses": [
+        {
+          "id": "22.1",
+          "categories": ["HPS"],
+          "requirement": "Emergency power solutions for minimum 2-hour outage in no less than 2 double GPOs in participant bedrooms and any provided automated entry/egress doors.",
+          "rationale": "Backup for life support systems if needed by participants."
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "title": "Assistive technology",
+      "page": 72,
+      "summary": "FA/HPS: high-speed wifi internet throughout dwelling. HPS: video, intercom or other communication system between participant and supports when not within line of sight.",
+      "clauses": [
+        {
+          "id": "23.1",
+          "categories": ["FA", "HPS"],
+          "requirement": "Internet connection with high speeds, stable, with wi-fi coverage throughout all areas of dwelling.",
+          "rationale": "For best use and needs of participants."
+        },
+        {
+          "id": "23.2",
+          "categories": ["HPS"],
+          "requirement": "Video, intercom or other communication system between participant and supports when not within line of sight.",
+          "rationale": "For safe management of dwelling. Flexibility for newer technology to be provided."
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "title": "Fire safe design",
+      "page": 73,
+      "summary": "All fire safety features per NCC based on dwelling classification. Smoke alarms in bedrooms and living spaces. Emergency evacuation plan provided to occupier/supports at final-as-built.",
+      "clauses": [
+        {
+          "id": "24.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Smoke alarms in keeping with home environment shall be provided in bedrooms and living spaces.",
+          "rationale": "For safety of users."
+        },
+        {
+          "id": "24.2",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Emergency evacuation plan shall be provided to occupier or supports, which may include path of travel to a safe place. Required only at final-as-built stage of SDA certification.",
+          "rationale": "For safety of users."
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "title": "Robust design",
+      "page": 74,
+      "summary": "Robust only. Resilient inconspicuous materials including high-impact wall lining (full height or min 2.4m). Vandal-proof fittings. Sound insulated participant bedroom. Recessed lighting fixtures. Design drawings showing egress and retreat areas at final-as-built.",
+      "clauses": [
+        {
+          "id": "25.1",
+          "categories": ["R"],
+          "requirement": "Resilient but inconspicuous materials, withstand heavy use, minimise injury risk, including high impact wall lining.",
+          "rationale": "Consider high impact wall lining for full height of wall or minimum 2.4m from FFL."
+        },
+        {
+          "id": "25.2",
+          "categories": ["R"],
+          "requirement": "High impact/vandal proof fittings and fixtures (e.g. commercial vandal-proof door handles). Resilient yet inconspicuous so they uphold the character of the home.",
+          "rationale": "For safety and serviceability."
+        },
+        {
+          "id": "25.3",
+          "categories": ["R"],
+          "requirement": "Participant's bedroom shall be sound insulated.",
+          "rationale": "For privacy. Wall insulation is one way to achieve this."
+        },
+        {
+          "id": "25.4",
+          "categories": ["R"],
+          "requirement": "Recessed lighting fixtures.",
+          "rationale": "Prevents damage and maintains safety."
+        },
+        {
+          "id": "25.5",
+          "categories": ["R"],
+          "requirement": "Design drawings showing layout with areas of egress and retreat for staff and other residents to avoid harm. Required only at final-as-built stage.",
+          "rationale": "For safety of users; document provided to site manager."
+        }
+      ]
+    },
+    {
+      "id": "AppA",
+      "title": "Appendix A: General best practice recommendations",
+      "page": 75,
+      "summary": "Best practice recommendations beyond minimum requirements: site selection near public transport (e.g. NSW SEPP 800m to rail/wharf or 400m to bus), longer 7800mm car spaces for rear-ramp vehicles, 4800mm wide for side-ramp/roof-hoist; 600mm sill heights (FA/HPS); height-adjustable hand basin 700-950mm; drawer base cabinets; cooktop/sink on height-adjustable bench (FA/HPS); plinth-raised front-loading washing machine 600-1100mm operable parts; assistance animal relief area; fire sprinklers all categories; interconnected smoke alarms.",
+      "clauses": [
+        {
+          "id": "AppA.1",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Site selection: SDA dwellings on suitable parcels providing wheelchair-accessible outdoor areas without excessive ramping/lifts. Locate near public transport (e.g. NSW SEPP requires within 800m walking of railway/wharf or 400m of light rail/bus stop). Recommended but not mandatory.",
+          "rationale": "Section 1 best practice."
+        },
+        {
+          "id": "AppA.3",
+          "categories": ["FA", "HPS"],
+          "requirement": "Car parking best practice: where 3800mm wide spaces proposed, recommend 7800mm length for rear-ramp mobility vehicles. For side-ramp or roof-mounted hoist, recommend 4800mm width.",
+          "rationale": "Section 3 best practice."
+        },
+        {
+          "id": "AppA.6",
+          "categories": ["FA", "HPS"],
+          "requirement": "Windows best practice: provide sill height maximum 600mm from FFL for FA/HPS.",
+          "rationale": "Section 6 best practice."
+        },
+        {
+          "id": "AppA.7",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Sanitary facilities best practice: provide wall or vanity cabinets for storage; provide power supply for future sensor operation of taps, toilet and lighting. For FA/HPS: hand wash basin height adjustable 700-950mm from FFL.",
+          "rationale": "Section 7 best practice."
+        },
+        {
+          "id": "AppA.8",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Kitchen best practice: provide drawers for base cabinets. For FA/HPS: cooktop on height-adjustable benchtop with AS1428.1 knee/toe; shallow sink (max 150mm depth) on height-adjustable benchtop with heat shield underside; microwave in accessible location; shelf-style drawer under wall oven; cooktop/oven isolation switch and exhaust fan switch in accessible location; benchtop automation with safety mechanism; max benchtop depth 700mm; height adjustability sometimes lower than 720mm.",
+          "rationale": "Section 8 best practice."
+        },
+        {
+          "id": "AppA.9",
+          "categories": ["FA", "HPS"],
+          "requirement": "Laundry best practice: front-loading washing machine (and dryer if separate) operable parts within 600-1100mm above FFL (use plinth/hob if needed). Shallow tub (max 150mm depth) on height-adjustable benchtop with heat shield underside.",
+          "rationale": "Section 9 best practice."
+        },
+        {
+          "id": "AppA.10",
+          "categories": ["FA", "HPS"],
+          "requirement": "Bedroom best practice: height-adjustable robe shelves and clothes hangers; locate windows not behind bedhead so views available from bed; consider overnight wheelchair storage and charging points; AS1428.1 door circulation any direction of approach; 1540mm circulation on all three sides of Queen bed.",
+          "rationale": "Section 10 best practice."
+        },
+        {
+          "id": "AppA.15",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Lifts best practice: provide automated passenger lift doors. NCC may require larger lift sizes in some residential buildings.",
+          "rationale": "Section 15 best practice."
+        },
+        {
+          "id": "AppA.16",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "External areas best practice: allow grassed assistance animal relief area; common open space at least 50% of available area or 15m² (whichever greater) with min 2500mm width wheelchair accessible; non-toxic plants and materials.",
+          "rationale": "Section 16 best practice."
+        },
+        {
+          "id": "AppA.20",
+          "categories": ["FA", "HPS"],
+          "requirement": "Ceiling hoists best practice: provide bathrooms with power and inbuilt structure for constant charge ceiling hoist, 250kg minimum, ceiling or wall mounted.",
+          "rationale": "Section 20 best practice."
+        },
+        {
+          "id": "AppA.21",
+          "categories": ["IL", "R"],
+          "requirement": "Heating/cooling best practice: provide air-conditioning to IL and R; provide controls operable via smart devices like iPads.",
+          "rationale": "Section 21 best practice."
+        },
+        {
+          "id": "AppA.22",
+          "categories": ["IL", "R", "FA"],
+          "requirement": "Emergency power best practice: provide emergency power solutions to FA, IL and R as well.",
+          "rationale": "Section 22 best practice."
+        },
+        {
+          "id": "AppA.23",
+          "categories": ["FA"],
+          "requirement": "Assistive technology best practice: provide video or intercom systems for FA design category.",
+          "rationale": "Section 23 best practice."
+        },
+        {
+          "id": "AppA.24",
+          "categories": ["IL", "R", "FA", "HPS"],
+          "requirement": "Fire safe design best practice: consult Fire Safety Engineer for all SDA. Provide fire sprinklers all categories. Interconnected smoke alarms in bedrooms/living spaces for 1-participant dwellings. Smoke detectors wired to fire panel for 2+ participant dwellings. Automatic sprinkler system for all 2+ participant dwellings (may be offset by fire compartmentation in some buildings).",
+          "rationale": "Section 25 best practice."
+        }
+      ]
+    }
+  ]
+}

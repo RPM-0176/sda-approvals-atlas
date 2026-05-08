@@ -590,7 +590,7 @@ export default function Resources({ onClose, projectCategory = null, projectName
           </>
         )}
 
-        {view === 'pdf' && (
+     {view === 'pdf' && (
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
     <div style={{
       padding: '14px 28px',
@@ -636,9 +636,6 @@ export default function Resources({ onClose, projectCategory = null, projectName
     />
   </div>
 )}
-            />
-          </div>
-        )}
 
         {view === 'links' && (
           <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px' }}>

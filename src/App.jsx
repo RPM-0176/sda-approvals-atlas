@@ -4,6 +4,20 @@ import { PlanningDDTab, DD_DEFAULTS } from './PlanningDD.jsx';
 import { SubdivisionPlannerSection, ParentLotDiagram, PerLotDiagramWithRoads, LAYOUT_DEFAULTS } from './SubdivisionPlanner.jsx';
 import { TreeRegisterTab } from './Trees.jsx';
 import { InteractiveParentLot } from './SitePlan.jsx';
+import Resources from './Resources.jsx';
+
+// ============================================================================
+// SDA CATEGORY MAPPING
+// Maps the long-form names used in the project data to the short codes
+// (IL / R / FA / HPS) used by the Resources hub for sorting/filtering.
+// ============================================================================
+
+const SDA_CATEGORY_CODE_MAP = {
+  'Improved Liveability': 'IL',
+  'Robust': 'R',
+  'Fully Accessible': 'FA',
+  'High Physical Support': 'HPS',
+};
 
 // ============================================================================
 // STATE-SPECIFIC RULES
@@ -529,6 +543,7 @@ export default function SDAPortal() {
   const [activeProject, setActiveProject] = useState(null);
   const [activeLotIdx, setActiveLotIdx] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [showResources, setShowResources] = useState(false);
 
   const [formStep, setFormStep] = useState(1);
   const [editingProjectId, setEditingProjectId] = useState(null);
@@ -537,7 +552,7 @@ export default function SDAPortal() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await window.storage.get('sda-projects-v7');
+        const result = await window.storage.get('sda-projects-v8');
         if (result?.value) {
           const loaded = JSON.parse(result.value);
           // Backfill planningDD on any older projects
@@ -558,7 +573,7 @@ export default function SDAPortal() {
   const saveProjects = async (updated) => {
     setProjects(updated);
     try {
-      await window.storage.set('sda-projects-v7', JSON.stringify(updated));
+      await window.storage.set('sda-projects-v8', JSON.stringify(updated));
     } catch (e) { console.error('Save failed', e); }
   };
 
@@ -690,6 +705,16 @@ export default function SDAPortal() {
     </div>;
   }
 
+  // Resolve the project context to pass to the Resources hub.
+  // When inside a project, the Resources hub will sort by relevance
+  // to that project's SDA category. From the Dashboard, no project context.
+  const resourceProjectCategory = (view === 'project' && activeProject)
+    ? SDA_CATEGORY_CODE_MAP[activeProject.sdaCategory] || null
+    : null;
+  const resourceProjectName = (view === 'project' && activeProject)
+    ? activeProject.name
+    : null;
+
   return (
     <div style={{ minHeight: '100vh', background: '#f5f1ea', fontFamily: 'ui-sans-serif, system-ui, sans-serif', color: '#1a1a1a' }}>
       <style>{`
@@ -723,11 +748,32 @@ export default function SDAPortal() {
             <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#b8763e', fontWeight: 600, marginBottom: 4 }} className="sans">SDA · DEVELOPMENT INTELLIGENCE</div>
             <div className="serif" style={{ fontSize: 22, fontWeight: 500, lineHeight: 1, letterSpacing: '-0.5px' }}>The Approvals Atlas</div>
           </div>
-          {view !== 'dashboard' && (
-            <button className="btn-ghost" onClick={() => { setView('dashboard'); setFormStep(1); setActiveTab('overview'); setEditingProjectId(null); }}>
-              <ArrowLeft size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} /> All Projects
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button
+              onClick={() => setShowResources(true)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '10px 16px',
+                background: 'transparent',
+                color: '#1a1a1a',
+                border: '1px solid #1a1a1a',
+                cursor: 'pointer',
+                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontWeight: 500, fontSize: 11, letterSpacing: 1, textTransform: 'uppercase',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.color = '#f5f1ea'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1a1a1a'; }}
+              title="Open SDA Design Standard, search clauses, view PDF"
+            >
+              <BookOpen size={13} /> Resources
             </button>
-          )}
+            {view !== 'dashboard' && (
+              <button className="btn-ghost" onClick={() => { setView('dashboard'); setFormStep(1); setActiveTab('overview'); setEditingProjectId(null); }}>
+                <ArrowLeft size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} /> All Projects
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -750,12 +796,21 @@ export default function SDAPortal() {
           toggleStep={toggleStep}
           updateCostOverride={updateCostOverride} resetCostOverrides={resetCostOverrides}
           startEdit={startEdit}
+          openResources={() => setShowResources(true)}
         />
       )}
 
       <footer style={{ borderTop: '1px solid #d4ccba', padding: '32px', marginTop: 60, fontSize: 11, color: '#888', textAlign: 'center' }} className="sans">
         SDA Permit Pathway · Guidance only · Always verify with council, certifier, and SDA assessor
       </footer>
+
+      {showResources && (
+        <Resources
+          onClose={() => setShowResources(false)}
+          projectCategory={resourceProjectCategory}
+          projectName={resourceProjectName}
+        />
+      )}
     </div>
   );
 }
@@ -768,12 +823,12 @@ function Dashboard({ projects, setView, setActiveProject, setActiveLotIdx, delet
   return (
     <div style={{ maxWidth: 1280, margin: '0 auto', padding: '60px 32px' }}>
       <div style={{ marginBottom: 56, maxWidth: 720 }}>
-        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v7</div>
+        <div style={{ fontSize: 10, letterSpacing: 2.5, color: '#666', marginBottom: 16 }} className="sans">FOR DEVELOPERS, BUILDERS & PLANNERS · v8</div>
         <h1 className="serif" style={{ fontSize: 64, fontWeight: 400, lineHeight: 1.05, margin: '0 0 24px', letterSpacing: '-0.03em' }}>
           From <em style={{ color: '#b8763e' }}>land</em><br />to <em style={{ color: '#b8763e' }}>permit</em>,<br />mapped.
         </h1>
         <p style={{ fontSize: 17, lineHeight: 1.6, color: '#444', maxWidth: 580 }} className="sans">
-          A working portal for SDA developers across QLD, NSW and VIC. Now with proper subdivision flow, edit-anywhere wizard, and project type presets.
+          A working portal for SDA developers across QLD, NSW and VIC. Now with the full searchable NDIS SDA Design Standard built in — click <strong>Resources</strong> in the header.
         </p>
       </div>
 
@@ -1180,7 +1235,7 @@ function LotEditor({ lot, idx, updateLot, stateRules, showCornerToggle = true })
 // PROJECT VIEW
 // ============================================================================
 
-function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActiveLotIdx, updateProject, updateProjectLot, updateProjectLotSetback, toggleStep, updateCostOverride, resetCostOverrides, startEdit }) {
+function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActiveLotIdx, updateProject, updateProjectLot, updateProjectLotSetback, toggleStep, updateCostOverride, resetCostOverrides, startEdit, openResources }) {
   const stateRules = STATES[project.state];
   const projType = PROJECT_TYPES[project.projectType];
   const steps = STEPS_TEMPLATE[project.state];
@@ -1240,9 +1295,9 @@ function ProjectView({ project, activeTab, setActiveTab, activeLotIdx, setActive
       {activeTab === 'trees' && <TreeRegisterTab project={project} updateProject={updateProject} />}
       {activeTab === 'planning-dd' && <PlanningDDTab project={project} updateProject={updateProject} />}
       {activeTab === 'pathway' && <PathwayTab project={project} steps={steps} toggleStep={toggleStep} completedCount={completedCount} totalSteps={totalSteps} />}
-      {activeTab === 'design' && <DesignTab project={project} sdaCat={sdaCat} updateProject={updateProject} />}
+      {activeTab === 'design' && <DesignTab project={project} sdaCat={sdaCat} updateProject={updateProject} openResources={openResources} />}
       {activeTab === 'costs' && <CostsTab cost={cost} project={project} stateRules={stateRules} updateCostOverride={updateCostOverride} resetCostOverrides={resetCostOverrides} />}
-      {activeTab === 'resources' && <ResourcesTab stateRules={stateRules} project={project} updateProject={updateProject} />}
+      {activeTab === 'resources' && <ResourcesTab stateRules={stateRules} project={project} updateProject={updateProject} openResources={openResources} />}
     </div>
   );
 }
@@ -1568,11 +1623,19 @@ function PathwayTab({ project, steps, toggleStep, completedCount, totalSteps }) 
   );
 }
 
-function DesignTab({ project, sdaCat, updateProject }) {
+function DesignTab({ project, sdaCat, updateProject, openResources }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 32, maxWidth: 1100 }}>
       <div>
-        <h2 className="serif" style={{ fontSize: 28, fontWeight: 500, margin: '0 0 8px', letterSpacing: '-0.01em' }}>{project.sdaCategory}</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 8 }}>
+          <h2 className="serif" style={{ fontSize: 28, fontWeight: 500, margin: 0, letterSpacing: '-0.01em' }}>{project.sdaCategory}</h2>
+          {openResources && (
+            <button className="btn-secondary" onClick={openResources}>
+              <BookOpen size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+              Open SDA Standard
+            </button>
+          )}
+        </div>
         <p style={{ fontSize: 14, color: '#666', margin: '0 0 24px', lineHeight: 1.6 }} className="sans">{sdaCat.description}</p>
         <h3 className="serif" style={{ fontSize: 18, fontWeight: 500, margin: '0 0 12px' }}>Required design features</h3>
         <div style={{ marginBottom: 32 }}>
@@ -1584,9 +1647,15 @@ function DesignTab({ project, sdaCat, updateProject }) {
           ))}
         </div>
         <h3 className="serif" style={{ fontSize: 18, fontWeight: 500, margin: '0 0 12px' }}>Universal SDA Design Standard requirements</h3>
+        <p style={{ fontSize: 12, color: '#888', margin: '0 0 12px' }} className="sans">Click any item below to open the full searchable Standard.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
           {['Pedestrian entry', 'Car parking', 'Doorways', 'Corridors', 'Windows', 'Sanitary facilities', 'Kitchen', 'Laundry', 'Bedroom', 'Living area', 'Switches and powerpoints', 'Flooring', 'Internal stairways', 'External areas', 'Storage', 'Luminance contrast', 'Heating and cooling', 'Emergency power', 'Assistive technology', 'Fire-safe design'].map((item, i) => (
-            <div key={i} style={{ padding: '10px 14px', background: '#f5f1ea', fontSize: 11, fontWeight: 500 }} className="sans">{item}</div>
+            <div key={i}
+              onClick={openResources}
+              style={{ padding: '10px 14px', background: '#f5f1ea', fontSize: 11, fontWeight: 500, cursor: openResources ? 'pointer' : 'default', transition: 'background 0.15s' }}
+              onMouseEnter={e => { if (openResources) e.currentTarget.style.background = '#ebe4d3'; }}
+              onMouseLeave={e => { if (openResources) e.currentTarget.style.background = '#f5f1ea'; }}
+              className="sans">{item}</div>
           ))}
         </div>
       </div>
@@ -1754,11 +1823,29 @@ function CostRow({ label, value }) {
   );
 }
 
-function ResourcesTab({ stateRules, project, updateProject }) {
+function ResourcesTab({ stateRules, project, updateProject, openResources }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 32, maxWidth: 1100 }}>
       <div>
         <h2 className="serif" style={{ fontSize: 28, fontWeight: 500, margin: '0 0 24px', letterSpacing: '-0.01em' }}>Resources</h2>
+
+        {/* NEW v8: featured SDA Standard card */}
+        {openResources && (
+          <div className="card" style={{ marginBottom: 16, background: '#1a1a1a', color: '#f5f1ea', borderColor: '#1a1a1a', cursor: 'pointer' }} onClick={openResources}>
+            <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+              <BookOpen size={28} style={{ color: '#b8763e', flexShrink: 0 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, letterSpacing: 2.5, color: '#b8763e', fontWeight: 600, marginBottom: 6 }} className="sans">NEW IN V8</div>
+                <h3 className="serif" style={{ fontSize: 19, fontWeight: 500, margin: '0 0 6px', lineHeight: 1.3 }}>NDIS SDA Design Standard — built in</h3>
+                <p style={{ fontSize: 12, color: '#d4ccba', margin: 0, lineHeight: 1.5 }} className="sans">
+                  All 25 sections, 134 clauses. Search by keyword (kitchen, doorway, bedroom). Auto-sorted by relevance to <strong style={{ color: '#f5f1ea' }}>{project.sdaCategory}</strong>. Inline PDF + download.
+                </p>
+                <div style={{ marginTop: 10, fontSize: 11, color: '#b8763e', fontWeight: 600 }} className="sans">Open Standard →</div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="card" style={{ marginBottom: 16 }}>
           <h3 className="serif" style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px' }}>{stateRules.name} Council planning portals</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>

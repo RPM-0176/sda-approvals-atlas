@@ -604,7 +604,7 @@ export default function Resources({ onClose, projectCategory = null, projectName
       <div style={{ flex: 1, fontSize: 14 }}>
         <strong>NDIS SDA Design Standard</strong> — Edition 1.1, October 2019
       </div>
-      
+      <a
         href="https://www.liverty.org.au/wp-content/uploads/2024/03/PB-SDA-Design-Standards-2019-PDF-1.pdf"
         target="_blank"
         rel="noopener noreferrer"

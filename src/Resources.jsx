@@ -4,7 +4,41 @@ import {
   ExternalLink, BookOpen, Filter
 } from 'lucide-react';
 import sdaStandard from './sda-design-standard.json';
+// PDF hosting + deep-link helper
+const PDF_RAW_URL = 'https://cdn.jsdelivr.net/gh/RPM-0176/sda-approvals-atlas@main/sda-design-standard.pdf';
+const pdfViewerUrl = (page) =>
+  `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(PDF_RAW_URL)}${page ? `#page=${page}` : ''}`;
 
+// Inline "Jump to PDF →" button shown next to each section heading
+const JumpToPdfButton = ({ page, onJump }) => (
+  <button
+    onClick={(e) => { e.stopPropagation(); onJump(page); }}
+    title={`Open PDF at page ${page}`}
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 4,
+      padding: '4px 10px',
+      marginLeft: 12,
+      background: 'transparent',
+      color: '#b8763e',
+      border: '1px solid #b8763e',
+      borderRadius: 4,
+      fontFamily: "'IBM Plex Sans', sans-serif",
+      fontSize: 11,
+      fontWeight: 500,
+      letterSpacing: 0.5,
+      textTransform: 'uppercase',
+      cursor: 'pointer',
+      whiteSpace: 'nowrap',
+      transition: 'all 0.15s',
+    }}
+    onMouseEnter={(e) => { e.currentTarget.style.background = '#b8763e'; e.currentTarget.style.color = '#fff'; }}
+    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#b8763e'; }}
+  >
+    <ExternalLink size={11} /> Jump to PDF p.{page}
+  </button>
+);
 // Category metadata — matches the icons used in the SDA Design Standard
 const CATEGORIES = {
   IL: { label: 'Improved Liveability', short: 'IL', color: '#d9488a' },
@@ -102,7 +136,7 @@ const highlightText = (text, query) => {
 };
 
 // Single section card — collapsible, shows all clauses when open
-const SectionCard = ({ section, query, expanded, onToggle, projectCategory }) => {
+const SectionCard = ({ section, query, expanded, onToggle, projectCategory,onJumpToPdf }) => {
   // For sorting: does this section have any clauses matching the project's category?
   const hasProjectCategory = projectCategory
     ? section.clauses.some(c => c.categories.includes(projectCategory))
@@ -157,6 +191,7 @@ const SectionCard = ({ section, query, expanded, onToggle, projectCategory }) =>
             <span style={{ fontSize: 11, color: '#999', fontFamily: 'IBM Plex Mono, monospace' }}>
               p. {section.page}
             </span>
+            <JumpToPdfButton page={section.page} onJump={onJumpToPdf} />
             {hasProjectCategory && (
               <span style={{
                 fontSize: 10,
@@ -255,7 +290,9 @@ export default function Resources({ onClose, projectCategory = null, projectName
   const [query, setQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState(projectCategory || 'all');
   const [expandedSections, setExpandedSections] = useState(new Set());
-
+const [pdfPage, setPdfPage] = useState(null);
+const handleJumpToPdf = (page) => { setPdfPage(page); setView('pdf'); };
+  
   // Auto-expand sections that match the search query
   useEffect(() => {
     if (!query) return;
@@ -570,7 +607,8 @@ export default function Resources({ onClose, projectCategory = null, projectName
                     expanded={expandedSections.has(section.id)}
                     onToggle={() => toggleSection(section.id)}
                     projectCategory={projectCategory}
-                  />
+                 onJumpToPdf={handleJumpToPdf} 
+                    />
                 ))
               )}
 
@@ -590,7 +628,7 @@ export default function Resources({ onClose, projectCategory = null, projectName
           </>
         )}
 
-     {view === 'pdf' && (
+    {view === 'pdf' && (
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
     <div style={{
       padding: '14px 28px',
@@ -603,9 +641,14 @@ export default function Resources({ onClose, projectCategory = null, projectName
       <FileText size={18} color="#666" />
       <div style={{ flex: 1, fontSize: 14 }}>
         <strong>NDIS SDA Design Standard</strong> — Edition 1.1, October 2019
+        {pdfPage && (
+          <span style={{ marginLeft: 12, color: '#b8763e', fontSize: 13 }}>
+            → jumped to page {pdfPage}
+          </span>
+        )}
       </div>
-      <a
-        href="https://www.liverty.org.au/wp-content/uploads/2024/03/PB-SDA-Design-Standards-2019-PDF-1.pdf"
+      
+        href={PDF_RAW_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -625,7 +668,8 @@ export default function Resources({ onClose, projectCategory = null, projectName
       </a>
     </div>
     <iframe
-      src={`https://docs.google.com/viewer?url=${encodeURIComponent('https://www.liverty.org.au/wp-content/uploads/2024/03/PB-SDA-Design-Standards-2019-PDF-1.pdf')}&embedded=true`}
+      key={pdfPage || 'p1'}
+      src={pdfViewerUrl(pdfPage)}
       title="NDIS SDA Design Standard"
       style={{
         flex: 1,

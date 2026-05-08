@@ -647,7 +647,7 @@ const handleJumpToPdf = (page) => { setPdfPage(page); setView('pdf'); };
           </span>
         )}
       </div>
-      
+      <a
         href={PDF_RAW_URL}
         target="_blank"
         rel="noopener noreferrer"

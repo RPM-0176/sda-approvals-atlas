@@ -591,47 +591,51 @@ export default function Resources({ onClose, projectCategory = null, projectName
         )}
 
         {view === 'pdf' && (
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <div style={{
-              padding: '14px 28px',
-              backgroundColor: '#fff',
-              borderBottom: '1px solid #e5dfd3',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-            }}>
-              <FileText size={18} color="#666" />
-              <div style={{ flex: 1, fontSize: 14 }}>
-                <strong>NDIS SDA Design Standard</strong> — Edition 1.1, October 2019
-              </div>
-              <a
-                href="/sda-design-standard.pdf"
-                download="NDIS-SDA-Design-Standard-2019.pdf"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  padding: '8px 14px',
-                  backgroundColor: '#b8763e',
-                  color: '#fff',
-                  borderRadius: 6,
-                  fontSize: 13,
-                  textDecoration: 'none',
-                  fontWeight: 500,
-                }}
-              >
-                <Download size={14} /> Download PDF
-              </a>
-            </div>
-            <iframe
-              src="/sda-design-standard.pdf"
-              title="NDIS SDA Design Standard"
-              style={{
-                flex: 1,
-                width: '100%',
-                border: 'none',
-                backgroundColor: '#525659',
-              }}
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <div style={{
+      padding: '14px 28px',
+      backgroundColor: '#fff',
+      borderBottom: '1px solid #e5dfd3',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12,
+    }}>
+      <FileText size={18} color="#666" />
+      <div style={{ flex: 1, fontSize: 14 }}>
+        <strong>NDIS SDA Design Standard</strong> — Edition 1.1, October 2019
+      </div>
+      
+        href="https://www.liverty.org.au/wp-content/uploads/2024/03/PB-SDA-Design-Standards-2019-PDF-1.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          padding: '8px 14px',
+          backgroundColor: '#b8763e',
+          color: '#fff',
+          borderRadius: 6,
+          fontSize: 13,
+          textDecoration: 'none',
+          fontWeight: 500,
+        }}
+      >
+        <Download size={14} /> Download PDF
+      </a>
+    </div>
+    <iframe
+      src={`https://docs.google.com/viewer?url=${encodeURIComponent('https://www.liverty.org.au/wp-content/uploads/2024/03/PB-SDA-Design-Standards-2019-PDF-1.pdf')}&embedded=true`}
+      title="NDIS SDA Design Standard"
+      style={{
+        flex: 1,
+        width: '100%',
+        border: 'none',
+        backgroundColor: '#525659',
+      }}
+    />
+  </div>
+)}
             />
           </div>
         )}

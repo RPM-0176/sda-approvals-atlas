@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// v8
 import { ChevronRight, MapPin, Trash2, Download, AlertCircle, CheckCircle2, Circle, ExternalLink, Building2, Plus, ArrowLeft, DollarSign, Ruler, Home, Wrench, FileCheck, BookOpen, Edit3, RotateCcw, Copy, Edit, Clipboard, TreePine } from 'lucide-react';
 import { PlanningDDTab, DD_DEFAULTS } from './PlanningDD.jsx';
 import { SubdivisionPlannerSection, ParentLotDiagram, PerLotDiagramWithRoads, LAYOUT_DEFAULTS } from './SubdivisionPlanner.jsx';
@@ -1907,3 +1908,4 @@ function ResourcesTab({ stateRules, project, updateProject, openResources }) {
     </div>
   );
 }
+"trigger v8 build"
